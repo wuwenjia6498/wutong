@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>茂妈烘焙 - 订单详情</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #333;
+            background-color: #f9f9f9;
+            padding-bottom: 100px; /* 为底部按钮留出空间 */
+        }
+        .status-bar {
+            height: 44px;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 84px;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: 20px; /* 为iPhone底部小黑条留出空间 */
+        }
+        .order-section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .action-button {
+            background: linear-gradient(90deg, #FF6B6B, #FF8E53);
+            color: white;
+            border-radius: 50px;
+            padding: 12px 0;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+        .light-button {
+            background-color: white;
+            color: #333;
+            border: 1px solid #e0e0e0;
+            border-radius: 50px;
+            padding: 12px 0;
+            font-weight: 600;
+        }
+        .order-status-circle {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #e5e5e5;
+            position: relative;
+            z-index: 10;
+        }
+        .order-status-circle.active {
+            background-color: #FF6B6B;
+        }
+        .order-status-line {
+            height: 30px;
+            width: 2px;
+            background-color: #e5e5e5;
+            position: absolute;
+            left: 7px;
+            top: 16px;
+        }
+        .order-status-line.active {
+            background-color: #FF6B6B;
+        }
+        .order-status-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+        }
+        .order-status-item:last-child {
+            margin-bottom: 0;
+        }
+        .order-status-item:last-child .order-status-line {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- iOS 状态栏 -->
+    <div class="status-bar">
+        <div>9:41</div>
+        <div class="flex items-center space-x-2">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+    
+    <!-- 页面顶部 -->
+    <div class="bg-white p-4 pb-3 mb-4 flex items-center">
+        <a href="profile.html" class="mr-4">
+            <i class="fas fa-chevron-left text-xl"></i>
+        </a>
+        <h1 class="text-xl font-bold">订单详情</h1>
+    </div>
+    
+    <!-- 订单状态 -->
+    <div class="order-section mx-4 mb-4">
+        <div class="bg-gradient-to-r from-[#FF6B6B] to-[#FF8E53] -mx-4 -mt-4 p-6 rounded-t-lg text-white mb-4">
+            <div class="flex items-center">
+                <i class="fas fa-shipping-fast text-3xl mr-4"></i>
+                <div>
+                    <h2 class="text-lg font-bold mb-1">配送中</h2>
+                    <p class="text-sm opacity-90">您的订单已在配送中，预计18:45送达</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <div class="order-status-item">
+                <div class="order-status-circle active absolute left-0 top-0"></div>
+                <div class="order-status-line active"></div>
+                <h3 class="font-semibold">订单已确认</h3>
+                <p class="text-xs text-gray-500 mt-1">您的订单已确认，等待烘焙</p>
+                <p class="text-xs text-gray-400 mt-1">12月5日 14:30</p>
+            </div>
+            
+            <div class="order-status-item">
+                <div class="order-status-circle active absolute left-0 top-0"></div>
+                <div class="order-status-line active"></div>
+                <h3 class="font-semibold">烘焙中</h3>
+                <p class="text-xs text-gray-500 mt-1">您的订单正在精心烘焙中</p>
+                <p class="text-xs text-gray-400 mt-1">12月5日 16:15</p>
+            </div>
+            
+            <div class="order-status-item">
+                <div class="order-status-circle active absolute left-0 top-0"></div>
+                <div class="order-status-line"></div>
+                <h3 class="font-semibold">配送中</h3>
+                <p class="text-xs text-gray-500 mt-1">配送员: 王师傅 (134****1234)</p>
+                <p class="text-xs text-gray-400 mt-1">12月5日 17:20</p>
+            </div>
+            
+            <div class="order-status-item">
+                <div class="order-status-circle absolute left-0 top-0"></div>
+                <h3 class="font-semibold text-gray-400">已送达</h3>
+                <p class="text-xs text-gray-400 mt-1">配送完成，感谢您的订购</p>
+                <p class="text-xs text-gray-400 mt-1">等待送达</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 收货地址 -->
+    <div class="order-section mx-4 mb-4">
+        <div class="flex items-start">
+            <i class="fas fa-map-marker-alt text-[#FF6B6B] mt-1 mr-3"></i>
+            <div>
+                <div class="flex items-center mb-1">
+                    <span class="font-medium mr-3">张伟</span>
+                    <span class="text-gray-500">138****5678</span>
+                </div>
+                <p class="text-sm text-gray-600">宁波江北外滩大厦506</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 订单商品 -->
+    <div class="order-section mx-4 mb-4">
+        <h3 class="font-semibold mb-4">订单商品</h3>
+        
+        <div class="border-b border-gray-100 pb-3 mb-3">
+            <div class="flex gap-3">
+                <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" 
+                     class="w-16 h-16 rounded-lg object-cover" alt="法式牛角面包">
+                <div class="flex-1">
+                    <div class="flex justify-between">
+                        <h4 class="font-medium">法式牛角面包</h4>
+                        <span>x2</span>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">原味 · 标准烘烤 · 简易包装</p>
+                    <div class="text-[#FF6B6B] font-medium mt-1">¥24.00</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="border-b border-gray-100 pb-3 mb-3">
+            <div class="flex gap-3">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=1089&q=80" 
+                     class="w-16 h-16 rounded-lg object-cover" alt="抹茶红豆蛋糕">
+                <div class="flex-1">
+                    <div class="flex justify-between">
+                        <h4 class="font-medium">抹茶红豆蛋糕</h4>
+                        <span>x1</span>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">标准甜度 · 小杯装</p>
+                    <div class="text-[#FF6B6B] font-medium mt-1">¥28.00</div>
+                </div>
+            </div>
+        </div>
+        
+        <div>
+            <div class="flex gap-3">
+                <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1064&q=80" 
+                     class="w-16 h-16 rounded-lg object-cover" alt="经典提拉米苏">
+                <div class="flex-1">
+                    <div class="flex justify-between">
+                        <h4 class="font-medium">经典提拉米苏</h4>
+                        <span>x1</span>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">标准甜度 · 小盒装</p>
+                    <div class="text-[#FF6B6B] font-medium mt-1">¥38.00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 订单信息 -->
+    <div class="order-section mx-4 mb-4">
+        <h3 class="font-semibold mb-4">订单信息</h3>
+        
+        <div class="space-y-3 text-sm">
+            <div class="flex justify-between">
+                <span class="text-gray-500">订单编号</span>
+                <div class="flex items-center">
+                    <span class="mr-2">2023120512345</span>
+                    <button class="text-[#FF6B6B]">复制</button>
+                </div>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-gray-500">下单时间</span>
+                <span>2023-12-05 14:26:31</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-gray-500">支付方式</span>
+                <span>微信支付</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-gray-500">配送时间</span>
+                <span>今日 18:00-19:00</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-gray-500">备注</span>
+                <span class="text-right">请放在门卫处，谢谢</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 订单金额 -->
+    <div class="order-section mx-4 mb-4">
+        <h3 class="font-semibold mb-4">订单金额</h3>
+        
+        <div class="space-y-3 text-sm">
+            <div class="flex justify-between">
+                <span class="text-gray-500">商品金额</span>
+                <span>¥90.00</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-gray-500">配送费</span>
+                <span>¥8.00</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-gray-500">优惠</span>
+                <span class="text-[#FF6B6B]">-¥10.00</span>
+            </div>
+            <div class="pt-2 border-t border-gray-100 flex justify-between">
+                <span class="font-medium">实付金额</span>
+                <span class="text-xl font-bold text-[#FF6B6B]">¥88.00</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部按钮 -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-4 flex gap-3">
+        <a href="#" class="w-1/2 light-button text-center">
+            联系客服
+        </a>
+        <a href="#" class="w-1/2 action-button text-center">
+            再来一单
+        </a>
+    </div>
+</body>
+</html> 

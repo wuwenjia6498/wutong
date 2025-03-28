@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梧桐小姐烘焙 - 首页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #333;
+            background-color: #f9f9f9;
+            padding-bottom: 90px; /* 为底部导航栏留出空间 */
+        }
+        .status-bar {
+            height: 44px;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 84px;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: 20px; /* 为iPhone底部小黑条留出空间 */
+        }
+        .nav-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #999;
+            font-size: 10px;
+        }
+        .nav-icon.active {
+            color: #8D6E63; /* 更改为棕色 */
+        }
+        .nav-icon i {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+        .product-card {
+            border-radius: 16px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .today-label {
+            background: linear-gradient(90deg, #8D6E63, #A1887F); /* 更改为棕色渐变 */
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            padding: 4px 12px;
+            position: absolute;
+            top: 12px;
+            left: 12px;
+        }
+        .search-bar {
+            background-color: rgba(142, 142, 147, 0.12);
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-size: 17px;
+            color: #8e8e93;
+        }
+    </style>
+</head>
+<body>
+    <!-- iOS 状态栏 -->
+    <div class="status-bar">
+        <div>9:41</div>
+        <div class="flex items-center space-x-2">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+    
+    <!-- 页面顶部 -->
+    <div class="p-4">
+        <div class="flex justify-between items-center mb-2">
+            <div>
+                <h1 class="text-2xl font-bold">梧桐小姐烘焙</h1>
+                <p class="text-xs text-gray-500">跟着茂哥吃早餐</p>
+            </div>
+            <div class="flex space-x-3">
+                <i class="fas fa-bell text-gray-500 text-xl"></i>
+                <i class="fas fa-heart text-gray-500 text-xl"></i>
+            </div>
+        </div>
+        
+        <!-- 搜索栏 -->
+        <div class="search-bar mb-6">
+            <i class="fas fa-search mr-2"></i>
+            搜索烘焙美食...
+        </div>
+    </div>
+    
+    <!-- 今日新鲜 -->
+    <div class="px-4 mb-6">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold">今日新鲜出炉</h2>
+            <a href="#" class="text-sm text-[#8D6E63]">查看全部</a>
+        </div>
+        
+        <div class="flex overflow-x-auto space-x-4 pb-2 -mx-1 px-1">
+            <!-- 新鲜商品卡片 1 -->
+            <div class="product-card flex-shrink-0 w-44 relative">
+                <span class="today-label">今日特供</span>
+                <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" 
+                     class="w-full h-36 object-cover" alt="法式牛角面包">
+                <div class="p-3">
+                    <h3 class="font-semibold">法式牛角面包</h3>
+                    <div class="flex justify-between items-center mt-2">
+                        <div class="text-[#8D6E63] font-bold">¥12</div>
+                        <button class="bg-[#8D6E63] text-white rounded-full w-7 h-7 flex items-center justify-center">
+                            <i class="fas fa-plus text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 新鲜商品卡片 2 -->
+            <div class="product-card flex-shrink-0 w-44 relative">
+                <span class="today-label">今日特供</span>
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=1089&q=80" 
+                     class="w-full h-36 object-cover" alt="抹茶红豆蛋糕">
+                <div class="p-3">
+                    <h3 class="font-semibold">抹茶红豆蛋糕</h3>
+                    <div class="flex justify-between items-center mt-2">
+                        <div class="text-[#8D6E63] font-bold">¥28</div>
+                        <button class="bg-[#8D6E63] text-white rounded-full w-7 h-7 flex items-center justify-center">
+                            <i class="fas fa-plus text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 新鲜商品卡片 3 -->
+            <div class="product-card flex-shrink-0 w-44 relative">
+                <span class="today-label">今日特供</span>
+                <img src="https://images.unsplash.com/photo-1602351447937-745cb720612f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1086&q=80" 
+                     class="w-full h-36 object-cover" alt="手工曲奇礼盒">
+                <div class="p-3">
+                    <h3 class="font-semibold">手工曲奇礼盒</h3>
+                    <div class="flex justify-between items-center mt-2">
+                        <div class="text-[#8D6E63] font-bold">¥42</div>
+                        <button class="bg-[#8D6E63] text-white rounded-full w-7 h-7 flex items-center justify-center">
+                            <i class="fas fa-plus text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 人气推荐 -->
+    <div class="px-4 mb-6">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold">人气推荐</h2>
+            <a href="#" class="text-sm text-[#8D6E63]">查看全部</a>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-4">
+            <!-- 人气商品 1 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1064&q=80" 
+                     class="w-full h-32 object-cover" alt="经典提拉米苏">
+                <div class="p-3">
+                    <h3 class="font-semibold">经典提拉米苏</h3>
+                    <div class="flex items-center mt-1 mb-2">
+                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                        <span class="text-xs ml-1">4.9 (324)</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="text-[#8D6E63] font-bold">¥38</div>
+                        <button class="bg-[#8D6E63] text-white rounded-full w-7 h-7 flex items-center justify-center">
+                            <i class="fas fa-plus text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 人气商品 2 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1047&q=80" 
+                     class="w-full h-32 object-cover" alt="芒果千层蛋糕">
+                <div class="p-3">
+                    <h3 class="font-semibold">芒果千层蛋糕</h3>
+                    <div class="flex items-center mt-1 mb-2">
+                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                        <span class="text-xs ml-1">4.8 (256)</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="text-[#8D6E63] font-bold">¥45</div>
+                        <button class="bg-[#8D6E63] text-white rounded-full w-7 h-7 flex items-center justify-center">
+                            <i class="fas fa-plus text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 人气商品 3 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1026&q=80" 
+                     class="w-full h-32 object-cover" alt="巧克力布朗尼">
+                <div class="p-3">
+                    <h3 class="font-semibold">巧克力布朗尼</h3>
+                    <div class="flex items-center mt-1 mb-2">
+                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                        <span class="text-xs ml-1">4.7 (198)</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="text-[#8D6E63] font-bold">¥32</div>
+                        <button class="bg-[#8D6E63] text-white rounded-full w-7 h-7 flex items-center justify-center">
+                            <i class="fas fa-plus text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 人气商品 4 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1572383672419-ab35444a5d0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" 
+                     class="w-full h-32 object-cover" alt="经典奶油泡芙">
+                <div class="p-3">
+                    <h3 class="font-semibold">经典奶油泡芙</h3>
+                    <div class="flex items-center mt-1 mb-2">
+                        <i class="fas fa-star text-yellow-400 text-xs"></i>
+                        <span class="text-xs ml-1">4.6 (152)</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="text-[#8D6E63] font-bold">¥18</div>
+                        <button class="bg-[#8D6E63] text-white rounded-full w-7 h-7 flex items-center justify-center">
+                            <i class="fas fa-plus text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="nav-bar">
+        <a href="home.html" class="nav-icon active">
+            <i class="fas fa-home"></i>
+            <span>首页</span>
+        </a>
+        <a href="categories.html" class="nav-icon">
+            <i class="fas fa-th-large"></i>
+            <span>分类</span>
+        </a>
+        <a href="cart.html" class="nav-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span>购物车</span>
+        </a>
+        <a href="profile.html" class="nav-icon">
+            <i class="fas fa-user"></i>
+            <span>我的</span>
+        </a>
+    </div>
+</body>
+</html> 

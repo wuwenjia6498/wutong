@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>茂妈烘焙 - 购物车</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #333;
+            background-color: #f9f9f9;
+            padding-bottom: 90px; /* 为底部导航栏留出空间 */
+        }
+        .status-bar {
+            height: 44px;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 84px;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: 20px; /* 为iPhone底部小黑条留出空间 */
+        }
+        .nav-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #999;
+            font-size: 10px;
+        }
+        .nav-icon.active {
+            color: #FF6B6B;
+        }
+        .nav-icon i {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+        .cart-item {
+            background-color: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .action-button {
+            background: linear-gradient(90deg, #FF6B6B, #FF8E53);
+            color: white;
+            border-radius: 50px;
+            padding: 14px 0;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+        .checkout-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px 16px 32px 16px;
+            background-color: white;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            z-index: 50;
+        }
+    </style>
+</head>
+<body>
+    <!-- iOS 状态栏 -->
+    <div class="status-bar">
+        <div>9:41</div>
+        <div class="flex items-center space-x-2">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+    
+    <!-- 页面顶部 -->
+    <div class="bg-white p-4 pb-3 mb-4">
+        <div class="flex justify-between items-center">
+            <h1 class="text-xl font-bold">我的购物车</h1>
+            <button class="text-gray-500 text-sm">
+                编辑 <i class="fas fa-pencil-alt ml-1"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- 购物车内容 -->
+    <div class="px-4 pb-32">
+        <!-- 显示今日特供标签 -->
+        <div class="bg-gradient-to-r from-[#FF6B6B] to-[#FF8E53] text-white rounded-lg p-3 mb-4 flex items-center">
+            <i class="fas fa-bell-concierge mr-2"></i>
+            <div class="text-sm">今日特供商品，结账后新鲜烘焙，21:00前下单可当日配送</div>
+        </div>
+        
+        <!-- 空购物车状态 -->
+        <div class="hidden flex flex-col items-center justify-center py-16">
+            <img src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png" class="w-32 h-32 mb-6 opacity-30" alt="空购物车">
+            <p class="text-gray-400 mb-6">您的购物车还是空的</p>
+            <a href="home.html" class="text-[#FF6B6B] font-medium">
+                去选购美味 <i class="fas fa-arrow-right ml-1"></i>
+            </a>
+        </div>
+        
+        <!-- 购物车项目 -->
+        <div class="mb-4">
+            <div class="cart-item">
+                <div class="flex">
+                    <div class="flex items-center mr-3">
+                        <input type="checkbox" checked class="w-5 h-5 accent-[#FF6B6B]">
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex gap-3">
+                            <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" 
+                                 class="w-20 h-20 rounded-lg object-cover" alt="法式牛角面包">
+                            <div class="flex-1">
+                                <h3 class="font-semibold mb-1">法式牛角面包</h3>
+                                <div class="text-xs text-gray-500 mb-2">
+                                    原味 · 标准烘烤 · 简易包装
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-[#FF6B6B] font-bold">¥12</div>
+                                    <div class="flex items-center">
+                                        <button class="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center">
+                                            <i class="fas fa-minus text-gray-500 text-xs"></i>
+                                        </button>
+                                        <span class="mx-3 font-medium text-sm">2</span>
+                                        <button class="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center">
+                                            <i class="fas fa-plus text-gray-500 text-xs"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart-item">
+                <div class="flex">
+                    <div class="flex items-center mr-3">
+                        <input type="checkbox" checked class="w-5 h-5 accent-[#FF6B6B]">
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex gap-3">
+                            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=1089&q=80" 
+                                 class="w-20 h-20 rounded-lg object-cover" alt="抹茶红豆蛋糕">
+                            <div class="flex-1">
+                                <h3 class="font-semibold mb-1">抹茶红豆蛋糕</h3>
+                                <div class="text-xs text-gray-500 mb-2">
+                                    标准甜度 · 小杯装
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-[#FF6B6B] font-bold">¥28</div>
+                                    <div class="flex items-center">
+                                        <button class="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center">
+                                            <i class="fas fa-minus text-gray-500 text-xs"></i>
+                                        </button>
+                                        <span class="mx-3 font-medium text-sm">1</span>
+                                        <button class="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center">
+                                            <i class="fas fa-plus text-gray-500 text-xs"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart-item">
+                <div class="flex">
+                    <div class="flex items-center mr-3">
+                        <input type="checkbox" checked class="w-5 h-5 accent-[#FF6B6B]">
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex gap-3">
+                            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1064&q=80" 
+                                 class="w-20 h-20 rounded-lg object-cover" alt="经典提拉米苏">
+                            <div class="flex-1">
+                                <h3 class="font-semibold mb-1">经典提拉米苏</h3>
+                                <div class="text-xs text-gray-500 mb-2">
+                                    标准甜度 · 小盒装
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-[#FF6B6B] font-bold">¥38</div>
+                                    <div class="flex items-center">
+                                        <button class="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center">
+                                            <i class="fas fa-minus text-gray-500 text-xs"></i>
+                                        </button>
+                                        <span class="mx-3 font-medium text-sm">1</span>
+                                        <button class="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center">
+                                            <i class="fas fa-plus text-gray-500 text-xs"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 优惠码 -->
+        <div class="bg-white rounded-lg p-4 mb-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-ticket-alt text-[#FF6B6B] mr-2"></i>
+                    <span>优惠码</span>
+                </div>
+                <div class="flex items-center text-gray-400">
+                    <input type="text" placeholder="输入优惠码" class="text-right w-32 focus:outline-none">
+                    <i class="fas fa-chevron-right ml-1"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 备注 -->
+        <div class="bg-white rounded-lg p-4 mb-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-sticky-note text-[#FF6B6B] mr-2"></i>
+                    <span>订单备注</span>
+                </div>
+                <div class="flex items-center text-gray-400">
+                    <input type="text" placeholder="添加备注信息" class="text-right w-32 focus:outline-none">
+                    <i class="fas fa-chevron-right ml-1"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 订单小计 -->
+        <div class="bg-white rounded-lg p-4 mb-4">
+            <div class="flex justify-between items-center mb-3">
+                <span class="text-gray-500">小计</span>
+                <span>¥90.00</span>
+            </div>
+            <div class="flex justify-between items-center mb-3">
+                <span class="text-gray-500">配送费</span>
+                <span>¥8.00</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-500">优惠</span>
+                <span class="text-[#FF6B6B]">-¥10.00</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 结账栏 -->
+    <div class="checkout-bar">
+        <div class="flex justify-between items-center mb-4">
+            <div class="flex items-center">
+                <input type="checkbox" checked class="w-5 h-5 accent-[#FF6B6B] mr-2">
+                <span>全选</span>
+            </div>
+            <div>
+                <span class="text-gray-500 text-sm mr-1">合计:</span>
+                <span class="text-xl font-bold text-[#FF6B6B]">¥88.00</span>
+            </div>
+        </div>
+        
+        <a href="checkout.html" class="action-button block text-center">
+            去结算 (4件)
+        </a>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="nav-bar">
+        <a href="home.html" class="nav-icon">
+            <i class="fas fa-home"></i>
+            <span>首页</span>
+        </a>
+        <a href="categories.html" class="nav-icon">
+            <i class="fas fa-th-large"></i>
+            <span>分类</span>
+        </a>
+        <a href="cart.html" class="nav-icon active">
+            <i class="fas fa-shopping-cart"></i>
+            <span>购物车</span>
+        </a>
+        <a href="profile.html" class="nav-icon">
+            <i class="fas fa-user"></i>
+            <span>我的</span>
+        </a>
+    </div>
+</body>
+</html> 
